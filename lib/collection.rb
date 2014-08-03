@@ -10,13 +10,13 @@ class Collection
     @@collections
   end
 
-  # def Collections.clear
-  #   @@collections = []
-  # end
+  def Collection.clear
+    @@collections = []
+  end
 
-  # def save
-  #   @@collections << self
-  # end
+  def save
+    @@collections << self
+  end
 
   def name
     @name
