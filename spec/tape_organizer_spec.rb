@@ -10,6 +10,18 @@ describe 'Collection' do
     expect(test_collection.name).to eq 'Sterling'
     expect(test_collection.tapes).to eq []
   end
+
+   it 'pushes collection object to Collection array' do
+    test_collection1 = Collection.new('Sterling')
+    test_collection2 = Collection.new('Nuatu')
+    test_collection1.save
+    test_collection2.save
+    expect(Collection.all[0].name).to eq 'Sterling'
+    expect(Collection.all[1].name).to eq 'Nuatu'
+    expect(Collection.all.length).to eq 2
+    expect(test_collection1.tapes.length).to eq 0
+    expect(test_collection2.tapes.length).to eq 0
+  end
 end
 
 describe 'Tape' do
