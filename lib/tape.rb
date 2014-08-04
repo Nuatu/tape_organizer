@@ -1,20 +1,20 @@
 class Tape
 
-  def initialize(artist,album_name,release_year)
+  def initialize(artist,name,year)
     @artist = artist
-    @album_name = album_name
-    @release_year = release_year
+    @name = name
+    @year = year
   end
 
   def artist
     @artist
   end
 
-  def album_name
-    @album_name
+  def name
+    @name
   end
 
-  def release_year
-    @release_year
+  def year
+    @year
   end
 end

@@ -6,38 +6,24 @@ class Collection
     @name = name
     @tapes = []
   end
-
   def Collection.all
     @@collections
   end
-
   def Collection.clear
     @@collections = []
   end
-
   def save
     @@collections << self
   end
-
   def name
     @name
   end
-
   def tapes
     @tapes
   end
-
-  # def collections_list
-  #   result = ""
-  #   @collections.each do |email_object|
-  #     if result == ""
-  #       result += "| " + email_object.email + " | "
-  #     else
-  #       result += email_object.email + " |"
-  #     end
-  #   end
-  #   result
-  # end
+  def tape_list(input)
+    Collection.all[input-1].tapes.each_with_index { | tape, index | puts "#{index + 1}. #{tape.artist} | #{tape.name} | #{tape.year}\n" }
+  end
 
   # def phone_list
   #   result = ""
