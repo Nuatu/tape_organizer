@@ -27,6 +27,13 @@ describe 'Collection' do
     expect(test_collection.tapes_list).to eq "\nThis collection has no tapes"
   end
 
+  it 'lists all Tapes in a Collection' do
+    test_collection = Collection.new('Nuatu')
+    test_collection.save
+    test_collection.tapes << Tape.new('Oddisee', 'Rock Creek Park', 2012)
+    test_collection.tapes <<  Tape.new('Someone Else', 'Over There', 2010)
+    expect(test_collection.tapes_list).to eq "1. Oddisee | Rock Creek Park | 2012\n2. Someone Else | Over There | 2010\n"
+  end
 
 end
 
