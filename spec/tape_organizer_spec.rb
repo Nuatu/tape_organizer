@@ -35,11 +35,20 @@ describe 'Collection' do
     expect(test_collection.tapes.length).to eq 1
   end
 
+  it 'deletes a tape from a collection' do
+    test_collection = Collection.new('Nuatu')
+    test_collection.save
+    test_collection.add_tape('Oddisee', 'Rock Creek Park', 2012)
+    expect(test_collection.tapes.length).to eq 1
+    test_collection.delete_tape(0)
+    expect(test_collection.tapes.length).to eq 0
+  end
+
   it 'lists all Tapes in a Collection' do
     test_collection = Collection.new('Nuatu')
     test_collection.save
-    test_collection.tapes << Tape.new('Oddisee', 'Rock Creek Park', 2012)
-    test_collection.tapes <<  Tape.new('Someone Else', 'Over There', 2010)
+    test_collection.add_tape('Oddisee', 'Rock Creek Park', 2012)
+    test_collection.add_tape('Someone Else', 'Over There', 2010)
     expect(test_collection.tapes_list).to eq "\n1. Oddisee | Rock Creek Park | 2012\n2. Someone Else | Over There | 2010\n"
   end
 

@@ -6,13 +6,14 @@ require './lib/collection'
 def main_menu
   loop do
     #Main menu block
-    puts "\nTape Collection by Ruby"
+    system "clear"
+    puts "\nTape Collection !><! YA DIGG!"
 
     puts "
     ____________________________
   /|............................|
  | |:         NEW TAPE         :|
- | |:      What you got?       :|
+ | |:      #WHAT YOU GOT-?     :|
  | |:     ,-.   _____   ,-.    :|
  | |:    ( `)) [_____] ( `))   :|
  |v|:     `-`   ' ' '   `-`    :|
@@ -23,10 +24,10 @@ def main_menu
  `.___/ /====/ /=//=/ /====/____/
       `--------------------'
 "
-    puts "Press '1' to create a new Collection"
-    puts "Press '2' to access existing Collection(s)"
+    puts "Press '1' CREATE a new Collection"
+    puts "Press '2' EXISTING Collection(s)"
     # puts "Press '3' to add or delete a Tape"
-    puts "Press 'x' to return to Exit"
+    puts "Press 'x' Exit Program"
     input = gets.chomp
     exit if input == 'x'
     main_menu_selector(input)
@@ -39,10 +40,11 @@ def main_menu_selector(input)
     name = gets.chomp
     newCollection = Collection.new(name)
     newCollection.save
-    puts "*saved*"
+    puts "**SAVED**"
   elsif input == '2'
     if Collection.all.length == 0
       puts "\nSorry, you have no collections"
+      puts "\nWhat you waiting on - TIME == MONEY!"
       return
     else
       puts "\nExisting Collections:"
@@ -59,12 +61,12 @@ end
 
 def collection_editor(input)
   puts "\nYou're modifiying the collection: #{Collection.all[input - 1].name}\n"
-  puts "\nPress '1' to add a Tape"
-  puts "Press '2' to delete a Tape"
-  puts "Press '3' to list all Tapes in this Collection"
-  puts "Press '4' to list all Artists"
-  puts "Press '5' to search by Artist"
-  puts "Press '6' to to search by Album"
+  puts "\nPress '1' to ADD a TAPE"
+  puts "Press '2' to DELETE a TAPE"
+  puts "Press '3' to LIST all TAPES in this Collection"
+  puts "Press '4' to LIST all ARTISTS"
+  puts "Press '5' to SEARCH by ARTIST"
+  puts "Press '6' to to SEARCH by ALBUM"
   puts "Press 'm' to return to main menu"
   editing_choice = gets.chomp.to_i
   unless (editing_choice == 'm')
@@ -76,13 +78,16 @@ def collection_editor(input)
       puts "\nRelease year?"
       new_year = gets.chomp
       Collection.all[input-1].add_tape(new_artist,new_title,new_year)
+      puts "**SAVED**"
       collection_editor(input)
 
     elsif editing_choice == 2
-      puts "\nPhone?"
-      new_phone = gets.chomp
-      Collection.all[input-1].phones << Phone.new(new_phone)
-      contact_editor(input)
+      puts Collection.all[input-1].tapes_list
+      puts "Tape number?"
+      choice = gets.chomp
+      Collection.all[input-1].delete_tape(choice)
+      collection_editor(input)
+
     elsif editing_choice == 3
       puts Collection.all[input-1].tapes_list
 

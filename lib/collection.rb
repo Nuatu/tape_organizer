@@ -21,6 +21,10 @@ class Collection
     self.tapes << Tape.new(new_artist,new_title,new_year)
   end
 
+  def delete_tape(choice)
+    self.tapes.delete_at(choice)
+  end
+
   def tapes_list
     result = "\n"
     if self.tapes.length == 0
@@ -32,5 +36,7 @@ class Collection
     end
     result
   end
+
+  
 
 end
