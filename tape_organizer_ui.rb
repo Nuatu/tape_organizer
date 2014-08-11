@@ -75,8 +75,7 @@ def collection_editor(input)
       new_title = gets.chomp
       puts "\nRelease year?"
       new_year = gets.chomp
-
-      Collection.all[input-1].tapes << Tape.new(new_artist,new_title,new_year)
+      Collection.all[input-1].add_tape(new_artist,new_title,new_year)
       collection_editor(input)
 
     elsif editing_choice == 2
@@ -85,9 +84,10 @@ def collection_editor(input)
       Collection.all[input-1].phones << Phone.new(new_phone)
       contact_editor(input)
     elsif editing_choice == 3
-      Collection.all[input-1].tapes_list(input)
+      puts Collection.all[input-1].tapes_list
+
       collection_editor(input)
-      
+
     elsif editing_choice == 4
       puts "\nEmail address to delete?"
       Collection.all[input-1].emails.each_with_index { | email, index | puts "#{index + 1}. #{email.email}" }

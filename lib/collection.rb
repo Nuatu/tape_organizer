@@ -1,9 +1,8 @@
 class Collection
 
   attr_accessor :collections, :name, :tapes
-  # attr_reader
 
-   @@collections = []
+  @@collections = []
 
   def initialize(name)
     @name = name
@@ -14,18 +13,18 @@ class Collection
     @@collections
   end
 
-  def Collection.clear
-    @@collections = []
-  end
-
   def save
     @@collections << self
   end
 
+  def add_tape(new_artist,new_title,new_year)
+    self.tapes << Tape.new(new_artist,new_title,new_year)
+  end
+
   def tapes_list
-    result = ""
+    result = "\n"
     if self.tapes.length == 0
-      result = "\nThis collection has no tapes"
+      result = "This collection has no tapes"
     else
       self.tapes.each_with_index do | tape, index |
         result +="#{index + 1}. #{tape.artist} | #{tape.title} | #{tape.year}\n"
@@ -34,27 +33,4 @@ class Collection
     result
   end
 
-  # def phone_list
-  #   result = ""
-  #   @phones.each do |phone_object|
-  #     if result == ""
-  #       result += "| " + phone_object.phone + " | "
-  #     else
-  #       result += phone_object.phone + " |"
-  #     end
-  #   end
-  #   result
-  # end
-
-  # def address_list
-  #   result = ""
-  #   @addresses.each do |address_object|
-  #     if result == ""
-  #       result += "| " + address_object.address + " | "
-  #     else
-  #       result += address_object.address + " |"
-  #     end
-  #   end
-  #   result
-  # end
 end
