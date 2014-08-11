@@ -26,10 +26,10 @@ def main_menu
     puts "Press '1' to create a new Collection"
     puts "Press '2' to access existing Collection(s)"
     # puts "Press '3' to add or delete a Tape"
-    puts "Press 'q' to return to exit"
-    main_choice = gets.chomp
-    exit if main_choice == 'q'
-    main_menu_selector(main_choice)
+    puts "Press 'x' to return to Exit"
+    input = gets.chomp
+    exit if input == 'x'
+    main_menu_selector(input)
   end
 end
 
@@ -39,6 +39,7 @@ def main_menu_selector(input)
     name = gets.chomp
     newCollection = Collection.new(name)
     newCollection.save
+    puts "*saved*"
   elsif input == '2'
     if Collection.all.length == 0
       puts "\nSorry, you have no collections"
@@ -47,15 +48,17 @@ def main_menu_selector(input)
       puts "\nExisting Collections:"
     end
     Collection.all.each_with_index { |collection, index| puts "#{index + 1}. #{collection.name}" }
-    puts "\nEnter a collection number to modify or press 'x' to exit"
-    modify_choice = gets.chomp.to_i
-    unless modify_choice == 'x'
-      collection_editor(modify_choice)
+    puts "\nEnter a collection number to modify or press 'x' to go back to Main Menu"
+    input = gets.chomp.to_i
+    unless input == 0 or input > Collection.all.length
+      collection_editor(input)
     end
+    main_menu
   end
 end
+
 def collection_editor(input)
-  puts "\nYou're modifiying the collection: #{Collection.all[input - 1].name}\n}"
+  puts "\nYou're modifiying the collection: #{Collection.all[input - 1].name}\n"
   puts "\nPress '1' to add a Tape"
   puts "Press '2' to delete a Tape"
   puts "Press '3' to list all Tapes in this Collection"
@@ -76,18 +79,15 @@ def collection_editor(input)
       Collection.all[input-1].tapes << Tape.new(new_artist,new_title,new_year)
       collection_editor(input)
 
-    # elsif editing_choice == 2
-    #   puts "\nPhone?"
-    #   new_phone = gets.chomp
-    #   Collection.all[input-1].phones << Phone.new(new_phone)
-    #   contact_editor(input)
-
-    elsif editing_choice == 3
-      puts "\n #{Collection.all[input-1]}"
-      new_address = gets.chomp
-      Collection.all[input-1].addresses << Address.new(new_address)
+    elsif editing_choice == 2
+      puts "\nPhone?"
+      new_phone = gets.chomp
+      Collection.all[input-1].phones << Phone.new(new_phone)
       contact_editor(input)
-
+    elsif editing_choice == 3
+      Collection.all[input-1].tapes_list(input)
+      collection_editor(input)
+      
     elsif editing_choice == 4
       puts "\nEmail address to delete?"
       Collection.all[input-1].emails.each_with_index { | email, index | puts "#{index + 1}. #{email.email}" }

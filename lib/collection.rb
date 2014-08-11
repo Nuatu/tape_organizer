@@ -1,28 +1,37 @@
 class Collection
 
+  attr_accessor :collections, :name, :tapes
+  # attr_reader
+
    @@collections = []
 
   def initialize(name)
     @name = name
     @tapes = []
   end
+
   def Collection.all
     @@collections
   end
+
   def Collection.clear
     @@collections = []
   end
+
   def save
     @@collections << self
   end
-  def name
-    @name
-  end
-  def tapes
-    @tapes
-  end
-  def tape_list(input)
-    Collection.all[input-1].tapes.each_with_index { | tape, index | puts "#{index + 1}. #{tape.artist} | #{tape.name} | #{tape.year}\n" }
+
+  def tapes_list
+    result = ""
+    if self.tapes.length == 0
+      result = "\nThis collection has no tapes"
+    else
+      self.tapes.each_with_index do | tape, index |
+        result +="#{index + 1}. #{tape.artist} | #{tape.title} | #{tape.year}\n"
+      end
+    end
+    result
   end
 
   # def phone_list

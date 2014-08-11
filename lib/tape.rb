@@ -1,20 +1,11 @@
 class Tape
 
-  def initialize(artist,name,year)
+  attr_accessor :artist, :title, :year
+
+  def initialize(artist,title,year)
     @artist = artist
-    @name = name
+    @title = title
     @year = year
   end
 
-  def artist
-    @artist
-  end
-
-  def name
-    @name
-  end
-
-  def year
-    @year
-  end
 end
