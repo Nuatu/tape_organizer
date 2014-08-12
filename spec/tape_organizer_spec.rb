@@ -63,7 +63,7 @@ describe 'Collection' do
     expect(test_collection.artist_list).to eq "\n1. Red Hot Chilli Peppers\n2. Oddisee\n3. MF DOOM\n"
   end
 
-  it 'searches by album name' do
+  it 'searches by artist name' do
     test_collection = Collection.new('Nuatu')
     test_collection.save
     test_collection.add_tape('Red Hot Chilli Peppers', 'Rock The Bells', 1999)
@@ -71,7 +71,18 @@ describe 'Collection' do
     test_collection.add_tape('Oddisee', 'Rock Creek Park', 2012)
     test_collection.add_tape('MF DOOM', 'Ski Mask', 2008)
     test_collection.add_tape('MF DOOM', 'Hawaii Surf', 2012)
-    expect(test_collection.album_search('live at red rock')).to eq "\nALBUM DETAILS: Red Hot Chilli Peppers, Live at Red Rock, 2006"
+    expect(test_collection.artist_search('mF Doom')).to eq "\nTAPE BY ARTIST: MF DOOM, Ski Mask, 2008\nTAPE BY ARTIST: MF DOOM, Hawaii Surf, 2012"
+  end
+
+  it 'searches by album title' do
+    test_collection = Collection.new('Nuatu')
+    test_collection.save
+    test_collection.add_tape('Red Hot Chilli Peppers', 'Rock The Bells', 1999)
+    test_collection.add_tape('Red Hot Chilli Peppers', 'Live at Red Rock', 2006)
+    test_collection.add_tape('Oddisee', 'Rock Creek Park', 2012)
+    test_collection.add_tape('MF DOOM', 'Ski Mask', 2008)
+    test_collection.add_tape('MF DOOM', 'Hawaii Surf', 2012)
+    expect(test_collection.album_search('Blue Red Peppers')).to eq "\nSorry, this collection doesn't include any tapes with that title"
   end
 
 end

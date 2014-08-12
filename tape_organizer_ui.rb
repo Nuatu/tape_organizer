@@ -10,10 +10,12 @@ def main_menu
     puts "\nTape Collection !><! YA DIGG!"
 
     puts "
+
+    T A P E  C O L L E C T I O N
     ____________________________
   /|............................|
- | |:         NEW TAPE         :|
- | |:      #WHAT YOU GOT-?     :|
+ | |:           1980's         :|
+ | |:        WHAT YOU GOT      :|
  | |:     ,-.   _____   ,-.    :|
  | |:    ( `)) [_____] ( `))   :|
  |v|:     `-`   ' ' '   `-`    :|
@@ -84,7 +86,7 @@ def collection_editor(input)
     elsif editing_choice == 2
       puts Collection.all[input-1].tapes_list
       puts "Tape number?"
-      choice = gets.chomp
+      choice = gets.chomp.to_i
       Collection.all[input-1].delete_tape(choice)
       collection_editor(input)
 
@@ -93,25 +95,18 @@ def collection_editor(input)
       collection_editor(input)
 
     elsif editing_choice == 4
-      puts "\nL"
-      Collection.all[input-1].emails.each_with_index { | email, index | puts "#{index + 1}. #{email.email}" }
-      deleted_email = gets.chomp.to_i
-      Collection.all[input-1].emails.delete_at(deleted_email-1)
-      contact_editor(input)
-
+      puts Collection.all[input-1].artist_list
+      collection_editor(input)
+    #
     elsif editing_choice == 5
-      puts "\nPhone to delete?"
-      Collection.all[input-1].phones.each_with_index { | phone, index | puts "#{index + 1}. #{phone.phone}" }
-      deleted_phone = gets.chomp.to_i
-      Collection.all[input-1].phones.delete_at(deleted_phone-1)
-      contact_editor(input)
+      puts "ARTIST to search for?"
+      puts Collection.all[input-1].artist_search(gets.chomp)
+      collection_editor(input)
 
     elsif editing_choice == 6
-      puts "\nAddress to delete?"
-      Collection.all[input-1].addresses.each_with_index { | address, index | puts "#{index + 1}. #{address.address}" }
-      deleted_address = gets.chomp.to_i
-      Collection.all[input-1].addresses.delete_at(deleted_address-1)
-      contact_editor(input)
+      puts "ALBUM to search for?"
+      puts Collection.all[input-1].album_search(gets.chomp)
+      collection_editor(input)
     end
   end
 

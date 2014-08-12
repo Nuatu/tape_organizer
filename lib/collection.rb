@@ -55,6 +55,29 @@ class Collection
     output
   end
 
+  def artist_search(input)
+    output = "\n"
+    if self.tapes.length == 0
+      output = "This collection has no tapes"
+    else
+      result = Set.new
+      self.tapes.each do | album |
+        result.merge([[album.artist, album.title, album.year]])
+      end
+      output = result
+      result1 = ""
+      output.each do |album|
+        if album[0].downcase == input.downcase
+          result1 += "\nTAPE BY ARTIST: " + album[0] + ", " + album[1] + ", " + album[2].to_s
+        end
+      end
+      if result.length < 1
+        result1 = "\nSorry, this collection doesn't have any tapes by that artist"
+      end
+    end
+    result1
+  end
+
   def album_search(input)
     output = "\n"
     if self.tapes.length == 0
@@ -65,13 +88,16 @@ class Collection
         result.merge([[album.artist, album.title, album.year]])
       end
       output = result
+      result1 = ""
       output.each do |album|
         if album[1].downcase == input.downcase
-          result = "\nALBUM DETAILS: " + album[0] + ", " + album[1] + ", " + album[2].to_s
+          result1 = "\nTAPE DETAILS: " + album[0] + ", " + album[1] + ", " + album[2].to_s
+        else
+        result1 = "\nSorry, this collection doesn't include any tapes with that title"
         end
       end
     end
-    result
+    result1
   end
 
 end
