@@ -66,9 +66,9 @@ class Collection
       end
       output = result
       result1 = ""
-      output.each do |album|
-        if album[0].downcase == input.downcase
-          result1 += "\nTAPE BY ARTIST: " + album[0] + ", " + album[1] + ", " + album[2].to_s
+      output.each do |tape|
+        if tape[0].downcase == input.downcase
+          result1 += "\nTAPE BY ARTIST: " + tape[0] + ", " + tape[1] + ", " + tape[2].to_s
         end
       end
       if result.length < 1
@@ -84,14 +84,14 @@ class Collection
       output = "This collection has no tapes"
     else
       result = Set.new
-      self.tapes.each do | album |
-        result.merge([[album.artist, album.title, album.year]])
+      self.tapes.each do | tape |
+        result.merge([[tape.artist, tape.title, tape.year]])
       end
       output = result
       result1 = ""
-      output.each do |album|
-        if album[1].downcase == input.downcase
-          result1 = "\nTAPE DETAILS: " + album[0] + ", " + album[1] + ", " + album[2].to_s
+      output.each do |tape|
+        if tape[1].downcase == input.downcase
+          result1 = "\nTAPE DETAILS: " + tape[0] + ", " + tape[1] + ", " + tape[2].to_s
         else
         result1 = "\nSorry, this collection doesn't include any tapes with that title"
         end
