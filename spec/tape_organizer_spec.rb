@@ -84,7 +84,6 @@ describe 'Collection' do
     test_collection.add_tape('MF DOOM', 'Hawaii Surf', 2012)
     expect(test_collection.album_search('Blue Red Peppers')).to eq "\nSorry, this collection doesn't include any tapes with that title"
   end
-
 end
 
 describe 'Tape' do

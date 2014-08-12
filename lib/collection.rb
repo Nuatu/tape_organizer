@@ -61,8 +61,8 @@ class Collection
       output = "This collection has no tapes"
     else
       result = Set.new
-      self.tapes.each do | album |
-        result.merge([[album.artist, album.title, album.year]])
+      self.tapes.each do | tape |
+        result.merge([[tape.artist, tape.title, tape.year]])
       end
       output = result
       result1 = ""
