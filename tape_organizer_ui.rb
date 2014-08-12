@@ -7,10 +7,8 @@ def main_menu
   loop do
     #Main menu block
     system "clear"
-    puts "\nTape Collection !><! YA DIGG!"
-
+    
     puts "
-
     T A P E  C O L L E C T I O N
     ____________________________
   /|............................|
@@ -28,7 +26,6 @@ def main_menu
 "
     puts "Press '1' CREATE a new Collection"
     puts "Press '2' EXISTING Collection(s)"
-    # puts "Press '3' to add or delete a Tape"
     puts "Press 'x' Exit Program"
     input = gets.chomp
     exit if input == 'x'
@@ -47,7 +44,12 @@ def main_menu_selector(input)
     if Collection.all.length == 0
       puts "\nSorry, you have no collections"
       puts "\nWhat you waiting on - TIME == MONEY!"
-      return
+      puts "\nPress '1' CREATE a new Collection"
+      puts "Press '2' EXISTING Collection(s)"
+      puts "Press 'x' Exit Program"
+      input = gets.chomp
+      exit if input == 'x'
+      main_menu_selector(input)
     else
       puts "\nExisting Collections:"
     end
