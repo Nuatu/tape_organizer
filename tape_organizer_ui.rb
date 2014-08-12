@@ -90,11 +90,10 @@ def collection_editor(input)
 
     elsif editing_choice == 3
       puts Collection.all[input-1].tapes_list
-
       collection_editor(input)
 
     elsif editing_choice == 4
-      puts "\nEmail address to delete?"
+      puts "\nL"
       Collection.all[input-1].emails.each_with_index { | email, index | puts "#{index + 1}. #{email.email}" }
       deleted_email = gets.chomp.to_i
       Collection.all[input-1].emails.delete_at(deleted_email-1)
