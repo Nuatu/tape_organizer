@@ -1,9 +1,7 @@
 Tape Organizer
 ==============
 
-by [Nuatu Tseggai] (https://github.com/nuatu)
-
-August 11, 2014
+by [Nuatu Tseggai] (https://github.com/nuatu) August 11, 2014
 _______________
 
 ###About
